@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     
     var viewModel = MainViewModel()
     var activityIndicator = UIActivityIndicatorView()
-    var cellDataSource = [Movie]()
+    var cellDataSource = [MovieCellViewModel]()
     let constant = Constant()
     
     private var tableView: UITableView = {

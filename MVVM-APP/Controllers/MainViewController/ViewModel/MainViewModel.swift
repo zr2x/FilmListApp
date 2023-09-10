@@ -39,7 +39,7 @@ class MainViewModel {
     }
     
     func mapCellData() {
-        self.cellDataSource.value = dataSource?.results ?? []
+        self.cellDataSource.value = self.dataSource?.results.compactMap({ MovieCellViewModel(movie: $0) })
     }
     
     func getMoviewTitile(_ movie: Movie) -> String {
