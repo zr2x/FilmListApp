@@ -15,13 +15,14 @@ class MainTableViewCell: UITableViewCell {
     private var movieImageView: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 10
-        image.contentMode = .scaleToFill
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
     private var movieTitleLabel: UILabel = {
         let label = UILabel()
-        
+        label.numberOfLines = 0
+        label.clipsToBounds = false
         return label
     }()
     
@@ -39,7 +40,7 @@ class MainTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        contentView.backgroundColor = .lightGray
         contentView.addBorder(color: .label, width: 1)
         contentView.round()
         setupViews()
@@ -79,18 +80,18 @@ class MainTableViewCell: UITableViewCell {
         }
         
         desciptionDateLabel.snp.makeConstraints { make in
-            make.left.equalTo(movieImageView.snp.right).offset(8)
+            make.left.equalTo(movieImageView.snp.right).offset(16)
             make.bottom.equalTo(rateMovieLabel.snp.top).inset(8)
         }
         
         rateMovieLabel.snp.makeConstraints { make in
-            make.left.equalTo(movieImageView.snp.right).offset(8)
+            make.left.equalTo(movieImageView.snp.right).offset(16)
             make.bottom.equalTo(movieImageView.snp.bottom)
         }
     }
     
     private func setupUI() {
-        movieTitleLabel.font = UIFont(name: constant.avenirBlack, size: 20)
+        movieTitleLabel.font = UIFont(name: constant.avenirBlack, size: 15)
         desciptionDateLabel.font = UIFont(name: constant.avenirBook, size: 15)
         rateMovieLabel.font = UIFont(name: constant.avenirBook, size: 15)
     }

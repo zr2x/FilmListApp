@@ -17,7 +17,8 @@ class MainViewController: UIViewController {
     
     private var tableView: UITableView = {
         let tableView = UITableView()
-        
+        tableView.separatorStyle = .none
+        tableView.separatorInset = UIEdgeInsets(top: 25, left: 0, bottom: 25, right: 0)
         return tableView
     }()
     
@@ -26,7 +27,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupActivityIndicator()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .systemBackground
         bindViewModel()
     }
     
@@ -100,9 +101,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 150
+//    }
+    
     
     func reloadTableView() {
         DispatchQueue.main.async {
