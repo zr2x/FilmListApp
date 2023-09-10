@@ -15,6 +15,7 @@ class MainTableViewCell: UITableViewCell {
     private var movieImageView: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 10
+        image.contentMode = .scaleToFill
         return image
     }()
     
@@ -65,27 +66,25 @@ class MainTableViewCell: UITableViewCell {
     }
     
     private func setupConstraints() {
-        contentView.snp.makeConstraints { make in
-            make.height.width.equalTo(250)
-        }
+        
         movieImageView.snp.makeConstraints { make in
             make.top.bottom.equalTo(contentView).inset(16)
-            make.left.equalTo(contentView).inset(8)
-            make.width.height.equalTo(100)
+            make.left.equalTo(contentView).inset(15)
+            make.width.height.equalTo(75)
         }
         
         movieTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(movieImageView)
-            make.left.equalTo(movieImageView.snp.right).inset(8)
+            make.left.equalTo(movieImageView.snp.right).offset(16)
         }
         
         desciptionDateLabel.snp.makeConstraints { make in
-            make.left.equalTo(movieImageView.snp.right).inset(8)
+            make.left.equalTo(movieImageView.snp.right).offset(8)
             make.bottom.equalTo(rateMovieLabel.snp.top).inset(8)
         }
         
         rateMovieLabel.snp.makeConstraints { make in
-            make.left.equalTo(movieImageView.snp.right).inset(8)
+            make.left.equalTo(movieImageView.snp.right).offset(8)
             make.bottom.equalTo(movieImageView.snp.bottom)
         }
     }

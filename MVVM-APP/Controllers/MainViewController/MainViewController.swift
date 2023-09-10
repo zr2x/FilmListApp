@@ -42,6 +42,7 @@ class MainViewController: UIViewController {
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: constant.cellIdentifire)
     }
     
@@ -81,7 +82,8 @@ class MainViewController: UIViewController {
 }
 
 // MARK: - Extension
-extension MainViewController: UITableViewDataSource {
+
+extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         viewModel.numberOfSections()
@@ -93,9 +95,13 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: constant.cellIdentifire, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
-        let movie = cellDataSource[indexPath.row]
-        cell.textLabel?.text = viewModel.getMoviewTitile(movie)
+        let cellViewModel = cellDataSource[indexPath.row]
+        cell.setupCell(viewModel: cellViewModel)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
     
     func reloadTableView() {
