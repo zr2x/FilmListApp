@@ -87,6 +87,16 @@ class MainViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
+    func getMovieDetails(movieId: Int) {
+        guard let movie = viewModel.retriveMovie(with: movieId) else { return }
+        let detailsViewModel = DetailMovieViewModel(movie: movie)
+        let detailsController = DetailMovieViewController(viewModel: detailsViewModel)
+        
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(detailsController, animated: true)
+        }
+    }
 }
 
 // MARK: - TableViewDataSource + Delegate
@@ -114,5 +124,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movieId = cellDataSource[indexPath.row].id
+        self.getMovieDetails(movieId: movieId)
     }
 }

@@ -7,6 +7,14 @@
 
 import Foundation
 
+//protocol MainViewModelProtocol {
+//    var issLoading: T { get set }
+//    var dataSource: TrendingMovieModel? { get set }
+//    
+//    
+//    associatedtype: T
+//}
+
 class MainViewModel {
     
     var isLoading: Observable<Bool> = Observable(false)
@@ -44,5 +52,11 @@ class MainViewModel {
     
     func getMoviewTitile(_ movie: Movie) -> String {
         return movie.title ?? movie.name ?? ""
+    }
+    
+    func retriveMovie(with id: Int) -> Movie? {
+        guard let movie = dataSource?.results.first(where: { $0.id == id }) else { return nil }
+        
+        return movie
     }
 }
