@@ -80,8 +80,8 @@
 				C06FB4482AA201C600ADB7C9 /* Class */,
 				C06FB4302A98FF5500ADB7C9 /* Models */,
 				C06FB42D2A98FEF400ADB7C9 /* Views */,
-				C06FB42F2A98FF2000ADB7C9 /* Resources */,
 				C06FB4322A98FFC600ADB7C9 /* Extension */,
+				C06FB42F2A98FF2000ADB7C9 /* Resources */,
 			);
 			path = "MVVM-APP";
 			sourceTree = "<group>";

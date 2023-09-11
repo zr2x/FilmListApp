@@ -62,6 +62,7 @@ class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - Bind ViewModel
     func bindViewModel() {
         viewModel.isLoading.bind { [weak self] isLoading in
             guard let self = self, let isLoading = isLoading else { return }
@@ -80,9 +81,15 @@ class MainViewController: UIViewController {
             strongSelf.reloadTableView()
         }
     }
+    
+    func reloadTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
 
-// MARK: - Extension
+// MARK: - TableViewDataSource + Delegate
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -101,14 +108,11 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 150
-//    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        122
+    }
     
-    
-    func reloadTableView() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
 }
